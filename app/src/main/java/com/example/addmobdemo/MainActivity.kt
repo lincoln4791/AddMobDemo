@@ -18,17 +18,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.d("tag","OnCreate Called")
+
         MobileAds.initialize(this)
-
-  /*      val adView = AdView(this)
-        adView.adSize = AdSize.BANNER
-        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"*/
-    // TODO: Add adView to your view hierarchy.
-
-
-
-
-
 
         //Banner Add
         mAdView = findViewById(R.id.adView)
@@ -38,35 +30,36 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnNext.setOnClickListener {
             startActivity(Intent(this,MainActivity2::class.java))
+            finish()
         }
 
         mAdView.adListener = object: AdListener(){
             override fun onAdLoaded() {
                 //Toast.makeText(this@MainActivity, "Add clicked",Toast.LENGTH_SHORT).show()
-                //Log.d("tag","Add Loaded")
+                Log.d("tag","Banner Loaded")
             }
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 // Code to be executed when an ad request fails.
-                //Log.d("tag","Add Failed")
+                Log.d("tag","Banner Failed")
             }
 
             override fun onAdOpened() {
                 // Code to be executed when an ad opens an overlay that
                 // covers the screen.
-                //Log.d("tag","Add Opened")
+                Log.d("tag","Banner Opened")
             }
 
             override fun onAdClicked() {
                 Toast.makeText(this@MainActivity, "Add clicked",Toast.LENGTH_SHORT).show()
-                //Log.d("tag","Add Clicked")
+                Log.d("tag","banner Clicked")
             }
 
             override fun onAdClosed() {
                 // Code to be executed when the user is about to return
                 // to the app after tapping on an ad.
                 Toast.makeText(this@MainActivity, "Add clicked",Toast.LENGTH_SHORT).show()
-                //Log.d("tag","Add Closed")
+                Log.d("tag","banner Closed")
             }
         }
     }

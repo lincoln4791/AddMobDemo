@@ -1,5 +1,6 @@
 package com.example.addmobdemo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -55,6 +56,12 @@ class MainActivity2 : AppCompatActivity() {
                 Log.d("tag", "Ad showed fullscreen content.")
                 mInterstitialAd = null
             }
+        }
+
+
+        binding.btnBack.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
         }
 
     }

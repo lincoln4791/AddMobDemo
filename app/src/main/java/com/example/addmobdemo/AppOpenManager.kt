@@ -3,9 +3,8 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.*
 import androidx.lifecycle.Lifecycle.Event.ON_CREATE
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.ProcessLifecycleOwner
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
@@ -13,7 +12,6 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.AdError
 import androidx.lifecycle.Lifecycle.Event.ON_START
 import com.google.android.gms.ads.FullScreenContentCallback
-import androidx.lifecycle.OnLifecycleEvent
 import java.util.*
 
 
@@ -34,9 +32,10 @@ class AppOpenManager
     /** Request an ad  */
     fun fetchAd() {
         if (isAdAvailable()) {
+            Log.d("tag","inside isAvailable Called")
             return
         }
-
+        Log.d("tag","after isAvailable Called")
         loadCallback = object : AppOpenAdLoadCallback() {
             /**
              * Called when an app open ad has loaded.
@@ -50,14 +49,27 @@ class AppOpenManager
                 Log.d("tag","onAdLoaded() called")
             }
 
+          /*  override fun onAppOpenAdLoaded(ad: AppOpenAd?) {
+                super.onAppOpenAdLoaded(ad)
+                appOpenAd = ad
+                loadTime = Date().time
+                //showAdIfAvailable()
+                Log.d("tag","onAdLoaded() called")
+            }*/
+
             /**
              * Called when an app open ad has failed to load.
              *
              * @param loadAdError the error.
              */
             override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                Log.d("tag","onAdFailedToLoad() called")
+                Log.d("tag","onAdFailedToLoad() called -> ${loadAdError.message}")
             }
+
+           /* override fun onAppOpenAdFailedToLoad(p0: LoadAdError?) {
+                super.onAppOpenAdFailedToLoad(p0)
+                Log.d("tag","onAdFailedToLoad() called")
+            }*/
         }
         val request = getAdRequest()
         AppOpenAd.load(
@@ -72,7 +84,6 @@ class AppOpenManager
 
     /** Utility method that checks if ad exists and can be shown.  */
     fun isAdAvailable(): Boolean {
-        //return appOpenAd != null
         return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
     }
 
@@ -132,7 +143,7 @@ class AppOpenManager
         }
     }
 
-    @OnLifecycleEvent(ON_START)
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStart() {
         showAdIfAvailable()
         Log.d("tag", "onStart")
@@ -141,7 +152,10 @@ class AppOpenManager
     private fun wasLoadTimeLessThanNHoursAgo(numHours: Long): Boolean {
         val dateDifference = Date().time - loadTime
         val numMilliSecondsPerHour: Long = 3600000
+        Log.d("tag","loadTime -> $loadTime:::currentTime->${Date().time} ::: Diff-> $dateDifference ::: ConstantHourDiff -> ${numMilliSecondsPerHour*numHours}")
         return dateDifference < numMilliSecondsPerHour * numHours
+        //return dateDifference < 30000
     }
+
 
 }
