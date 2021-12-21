@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AddMobDemo"
 include ':app'
+include ':nativetemplates'
