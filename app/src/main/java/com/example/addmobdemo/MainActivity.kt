@@ -5,8 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.view.size
 import com.example.addmobdemo.databinding.ActivityMainBinding
 import com.google.android.gms.ads.*
+import android.util.DisplayMetrics
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,16 +25,34 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("tag","OnCreate Called")
 
-        MobileAds.initialize(this)
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val height = displayMetrics.heightPixels
+        val width = displayMetrics.widthPixels
+
+
+
 
         //Banner Add
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
+        MobileAds.initialize(this)
 
         binding.btnNext.setOnClickListener {
             startActivity(Intent(this,MainActivity2::class.java))
+            finish()
+        }
+
+        binding.btnNext2.setOnClickListener {
+            startActivity(Intent(this,NativeAddDemo::class.java))
+            finish()
+        }
+
+
+        binding.btnAdative.setOnClickListener {
+            startActivity(Intent(this,AdaptiveBanner::class.java))
             finish()
         }
 

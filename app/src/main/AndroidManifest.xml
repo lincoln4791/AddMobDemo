@@ -3,6 +3,10 @@
     package="com.example.addmobdemo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
 
     <application
         android:name=".MyApplication"
@@ -13,10 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AddMobDemo">
         <activity
-            android:name=".MainActivity2"
+            android:name=".NativeAd2"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AdaptiveBanner"
+            android:exported="true" />
+        <activity
+            android:name=".NativeAddDemo"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
