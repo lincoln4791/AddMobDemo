@@ -1,16 +1,15 @@
-package com.example.addmobdemo
+package com.example.addmobdemo.adsUtil
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.lifecycle.Lifecycle.Event.ON_CREATE
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.AdError
-import androidx.lifecycle.Lifecycle.Event.ON_START
+import com.example.addmobdemo.MyApplication
 import com.google.android.gms.ads.FullScreenContentCallback
 import java.util.*
 

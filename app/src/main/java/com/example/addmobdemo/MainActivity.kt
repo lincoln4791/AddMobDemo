@@ -7,6 +7,7 @@ import android.util.Log
 import com.example.addmobdemo.databinding.ActivityMainBinding
 import com.google.android.gms.ads.*
 import android.util.DisplayMetrics
+import com.example.addmobdemo.adsUtil.InterstistialAdHelper
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,9 +38,13 @@ class MainActivity : AppCompatActivity() {
         }*/
 
 
-        binding.btnNext.setOnClickListener {
-            startActivity(Intent(this,MainActivity2::class.java))
-            finish()
+        binding.btnNextNative.setOnClickListener {
+            startActivity(Intent(this,NativeAd2::class.java))
+
+        }
+
+        binding.btnNextNativeSmall.setOnClickListener {
+            startActivity(Intent(this,NativeAddSmall::class.java))
         }
 
         binding.btnNextInter.setOnClickListener {
@@ -47,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
 
             val lastAdShown = prefManager.lastInterstitialAdShownMAI2
-            if(Util.canAdShow(prefManager,lastAdShown)){
+            if(Util.canAdShow(this,lastAdShown)){
                 val interAd = InterstistialAdHelper(this@MainActivity, this@MainActivity, lastAdShown)
                 interAd.loadinterAd {
                     navigate()

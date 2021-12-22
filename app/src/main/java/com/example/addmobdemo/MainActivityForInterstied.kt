@@ -2,6 +2,7 @@ package com.example.addmobdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.addmobdemo.adsUtil.BannerAddHelper
 import com.example.addmobdemo.databinding.ActivityMainForInterstiedBinding
 import com.google.android.gms.ads.AdView
 
@@ -20,7 +21,7 @@ class MainActivityForInterstied : AppCompatActivity() {
 
 
         val lastAddShownDate = prefManager.lastInterstitialAdShownBANNER
-        if(Util.canAdShow(prefManager,lastAddShownDate)){
+        if(Util.canAdShow(this,lastAddShownDate)){
             val bannerHelper = BannerAddHelper(this@MainActivityForInterstied)
             bannerHelper.bannerAd(binding.adView){
                 if (it){

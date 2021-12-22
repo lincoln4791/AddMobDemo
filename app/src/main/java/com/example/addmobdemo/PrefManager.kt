@@ -27,6 +27,14 @@ class PrefManager (context: Context) {
         get() = pref.getString("mai2Banner","")!!
         set(value) {editor.putString("mai2Banner",value).commit()}
 
+    var lastNativeAdShown:String
+        get() = pref.getString("lastNativeAdShown","")!!
+        set(value) {editor.putString("lastNativeAdShown",value).commit()}
+
+    var lastNativeAdShownSmall:String
+        get() = pref.getString("lastNativeAdShownSmall","")!!
+        set(value) {editor.putString("lastNativeAdShownSmall",value).commit()}
+
 
     companion object{
         private val PREF_NAME = "PatientAid"

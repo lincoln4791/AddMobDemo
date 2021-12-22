@@ -1,8 +1,9 @@
-package com.example.addmobdemo
+package com.example.addmobdemo.adsUtil
 
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.example.addmobdemo.PrefManager
 import com.google.android.gms.ads.*
 
 class BannerAddHelper(private val context: Context) {

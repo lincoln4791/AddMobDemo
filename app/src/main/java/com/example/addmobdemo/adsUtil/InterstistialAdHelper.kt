@@ -1,9 +1,10 @@
-package com.example.addmobdemo
+package com.example.addmobdemo.adsUtil
 
 import android.app.Activity
 import android.content.Context
 import android.util.Log
-import com.example.addmobdemo.Util.Companion.diffTime
+import com.example.addmobdemo.CurrentDate
+import com.example.addmobdemo.PrefManager
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -47,7 +48,7 @@ class InterstistialAdHelper(private val context: Context,private val activity:Ac
                     override fun onAdShowedFullScreenContent() {
                         Log.d("tag", "InterAd showed fullscreen content.")
                         mInterstitialAd = null
-                        prefManager.lastInterstitialAdShownMAI2=CurrentDate.currentTime24H
+                        prefManager.lastInterstitialAdShownMAI2= CurrentDate.currentTime24H
                     }
                 }
 

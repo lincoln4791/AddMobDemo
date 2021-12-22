@@ -16,20 +16,7 @@ class Util {
     companion object{
         private val tag = "tag"
 
-        fun loadNativeAd(context: Context,view: TemplateView){
-            MobileAds.initialize(context)
-            val adLoader: AdLoader = com.google.android.gms.ads.AdLoader.Builder(context,
-                "ca-app-pub-3940256099942544/2247696110")
-                .forNativeAd { nativeAd ->
-                    val styles =
-                        NativeTemplateStyle.Builder().build()
-                    view.setStyles(styles)
-                    view.setNativeAd(nativeAd)
-                }
-                .build()
 
-            adLoader.loadAd(AdRequest.Builder().build())
-        }
 
 
 
@@ -55,11 +42,12 @@ class Util {
         }
 
 
-        fun canAdShow(prefManager:PrefManager,interstitialLastShown:String) : Boolean{
+        fun canAdShow(context:Context,lastAdShownDate:String) : Boolean{
+            val prefManager = PrefManager(context)
             var canAdShow  = false
             if (!prefManager.isTestUser) {
-                if (interstitialLastShown!="" && diffTime(interstitialLastShown)>=0){
-                    if (diffTime(interstitialLastShown) >1L) {
+                if (lastAdShownDate!="" && diffTime(lastAdShownDate)>=0){
+                    if (diffTime(lastAdShownDate) >1L) {
                         info(tag," Ad shown because difference is greater than 1")
                         canAdShow = true
                     } else {

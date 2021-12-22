@@ -1,6 +1,7 @@
 package com.example.addmobdemo
 
 import android.app.Application
+import com.example.addmobdemo.adsUtil.AppOpenManager
 
 import com.google.android.gms.ads.MobileAds
 
