@@ -17,6 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AddMobDemo">
         <activity
+            android:name=".NativeAddSmall"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".NativeAd2"
             android:exported="true" />
         <activity
@@ -25,11 +33,6 @@
         <activity
             android:name=".NativeAddDemo"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity2"
